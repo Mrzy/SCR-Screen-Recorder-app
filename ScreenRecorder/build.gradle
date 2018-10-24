@@ -1,28 +1,35 @@
 apply plugin: 'com.android.application'
 
 dependencies {
-    compile 'com.android.support:support-v4:22.2.0'
-    compile files('libs/libGoogleAnalyticsV2.jar')
-}
+    implementation 'com.android.support:support-v4:22.2.0'
+    implementation fileTree(include: ['*.jar'], dir: 'libs')}
 
 android {
     compileSdkVersion 22
-    buildToolsVersion '22.0.1'
+    buildToolsVersion '27.0.3'
 
     defaultConfig {
         minSdkVersion 15
-        targetSdkVersion 19
+        targetSdkVersion 22
     }
 
+    lintOptions {
+        abortOnError false
+    }
+
+    flavorDimensions "mode"
     productFlavors {
-        root {
-            applicationId "com.iwobanas.screenrecorder.pro"
-        }
+
 
         noRoot {
             applicationId "com.iwobanas.screenrecorder.noroot.pro"
-            minSdkVersion 21
-            targetSdkVersion 22
+//            minSdkVersion 21
+//            targetSdkVersion 22
+            dimension "mode"
+        }
+        root {
+            applicationId "com.iwobanas.screenrecorder.pro"
+            dimension "mode"
         }
     }
 
